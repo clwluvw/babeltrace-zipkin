@@ -139,6 +139,7 @@ class HttpClient(object):
         params = span
         headers = {"Content-type": "application/json", "Accept": "*/*"}
         self.conn.request("POST", "/api/v1/spans", params, headers)
-        response = self.conn.getresponse().read()
-
-
+        response = self.conn.getresponse()
+        if response.status != 202:
+            print("Span not accepted! span: " + str(span))
+        response.read()
