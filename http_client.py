@@ -137,7 +137,7 @@ class HttpClient(object):
     def send_to_zipkin(self, span):
         url = 'http://'+self.host+':'+str(self.port) # Set destination URL here
         params = span
-        headers = {"Content-type": "application/json", "Accept": "text/plain"}
+        headers = {"Content-type": "application/json", "Accept": "*/*"}
         self.conn.request("POST", "/api/v1/spans", params, headers)
         response = self.conn.getresponse().read()
 
